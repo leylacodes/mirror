@@ -37,6 +37,18 @@ android {
     buildFeatures {
         compose = true
     }
+
+    testOptions {
+        unitTests {
+            isIncludeAndroidResources = true
+        }
+    }
+
+    packaging {
+        resources {
+            excludes += setOf("META-INF/LICENSE.md", "META-INF/LICENSE-notice.md")
+        }
+    }
 }
 
 dependencies {
@@ -59,4 +71,18 @@ dependencies {
     implementation(libs.accompanist.permissions)
     implementation(libs.kotlinx.serialization.json)
     debugImplementation(libs.androidx.ui.tooling)
+    debugImplementation(libs.androidx.ui.test.manifest)
+
+    testImplementation(libs.junit)
+    testImplementation(libs.mockk)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.robolectric)
+    testImplementation(libs.androidx.test.core.ktx)
+    testImplementation(libs.androidx.test.ext.junit)
+    testImplementation(platform(libs.androidx.compose.bom))
+    testImplementation(libs.androidx.ui.test.junit4)
+
+    androidTestImplementation(libs.androidx.test.ext.junit)
+    androidTestImplementation(platform(libs.androidx.compose.bom))
+    androidTestImplementation(libs.androidx.ui.test.junit4)
 }
