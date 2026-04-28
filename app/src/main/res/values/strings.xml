@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Mirror</string>
+    <string name="notification_channel_name">Daily Reminder</string>
+    <string name="notification_title">Time to check in</string>
+</resources>
