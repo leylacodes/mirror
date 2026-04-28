@@ -20,8 +20,8 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.ChevronLeft
-import androidx.compose.material.icons.filled.ChevronRight
+import androidx.compose.material.icons.filled.KeyboardArrowLeft
+import androidx.compose.material.icons.filled.KeyboardArrowRight
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -145,9 +145,9 @@ private fun CalendarHistoryTab(state: HistoryUiState, vm: HistoryViewModel, onEd
     Column(Modifier.fillMaxSize().padding(16.dp)) {
         // Month navigation
         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
-            IconButton(onClick = { vm.prevMonth() }) { Icon(Icons.Default.ChevronLeft, "Previous", tint = GoldAccent) }
+            IconButton(onClick = { vm.prevMonth() }) { Icon(Icons.Default.KeyboardArrowLeft, "Previous", tint = GoldAccent) }
             Text(month.format(fmt), style = MaterialTheme.typography.titleLarge, color = GoldAccent)
-            IconButton(onClick = { vm.nextMonth() }) { Icon(Icons.Default.ChevronRight, "Next", tint = GoldAccent) }
+            IconButton(onClick = { vm.nextMonth() }) { Icon(Icons.Default.KeyboardArrowRight, "Next", tint = GoldAccent) }
         }
         Spacer(Modifier.height(8.dp))
 

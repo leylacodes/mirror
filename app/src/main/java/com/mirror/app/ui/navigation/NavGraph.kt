@@ -14,14 +14,19 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.mirror.app.AppContainer
 import com.mirror.app.ui.screen.checkin.CheckInScreen
+import com.mirror.app.ui.screen.checkin.CheckInViewModel
 import com.mirror.app.ui.screen.checkin.CheckInViewModelFactory
 import com.mirror.app.ui.screen.history.HistoryScreen
+import com.mirror.app.ui.screen.history.HistoryViewModel
 import com.mirror.app.ui.screen.history.HistoryViewModelFactory
 import com.mirror.app.ui.screen.home.HomeScreen
+import com.mirror.app.ui.screen.home.HomeViewModel
 import com.mirror.app.ui.screen.home.HomeViewModelFactory
 import com.mirror.app.ui.screen.onboarding.OnboardingScreen
+import com.mirror.app.ui.screen.onboarding.OnboardingViewModel
 import com.mirror.app.ui.screen.onboarding.OnboardingViewModelFactory
 import com.mirror.app.ui.screen.settings.SettingsScreen
+import com.mirror.app.ui.screen.settings.SettingsViewModel
 import com.mirror.app.ui.screen.settings.SettingsViewModelFactory
 import kotlinx.coroutines.flow.first
 
@@ -39,7 +44,7 @@ fun NavGraph(container: AppContainer) {
 
     NavHost(navController = navController, startDestination = start) {
         composable(Screen.Onboarding.route) {
-            val vm = viewModel(factory = OnboardingViewModelFactory(container))
+            val vm = viewModel<OnboardingViewModel>(factory = OnboardingViewModelFactory(container))
             OnboardingScreen(vm, onFinished = {
                 navController.navigate(Screen.Home.route) {
                     popUpTo(Screen.Onboarding.route) { inclusive = true }
@@ -47,7 +52,7 @@ fun NavGraph(container: AppContainer) {
             })
         }
         composable(Screen.Home.route) {
-            val vm = viewModel(factory = HomeViewModelFactory(container))
+            val vm = viewModel<HomeViewModel>(factory = HomeViewModelFactory(container))
             HomeScreen(
                 vm = vm,
                 onCheckIn = { date -> navController.navigate(Screen.CheckIn.createRoute(date)) },
@@ -60,11 +65,11 @@ fun NavGraph(container: AppContainer) {
             arguments = listOf(navArgument("date") { type = NavType.StringType })
         ) { backStack ->
             val date = backStack.arguments?.getString("date") ?: ""
-            val vm = viewModel(factory = CheckInViewModelFactory(container, date))
+            val vm = viewModel<CheckInViewModel>(factory = CheckInViewModelFactory(container, date))
             CheckInScreen(vm, onSaved = { navController.popBackStack() })
         }
         composable(Screen.History.route) {
-            val vm = viewModel(factory = HistoryViewModelFactory(container))
+            val vm = viewModel<HistoryViewModel>(factory = HistoryViewModelFactory(container))
             HistoryScreen(
                 vm = vm,
                 onEdit = { date -> navController.navigate(Screen.CheckIn.createRoute(date)) },
@@ -72,7 +77,7 @@ fun NavGraph(container: AppContainer) {
             )
         }
         composable(Screen.Settings.route) {
-            val vm = viewModel(factory = SettingsViewModelFactory(container))
+            val vm = viewModel<SettingsViewModel>(factory = SettingsViewModelFactory(container))
             SettingsScreen(vm, onBack = { navController.popBackStack() })
         }
     }

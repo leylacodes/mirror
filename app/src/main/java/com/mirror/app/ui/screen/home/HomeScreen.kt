@@ -15,7 +15,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.History
+import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -66,7 +66,7 @@ fun HomeScreen(
             Text("Mirror", style = MaterialTheme.typography.headlineLarge, color = GoldAccent)
             Row {
                 IconButton(onClick = onHistory) {
-                    Icon(Icons.Default.History, contentDescription = "History", tint = GoldAccent)
+                    Icon(Icons.Default.DateRange, contentDescription = "History", tint = GoldAccent)
                 }
                 IconButton(onClick = onSettings) {
                     Icon(Icons.Default.Settings, contentDescription = "Settings", tint = GoldAccent)
